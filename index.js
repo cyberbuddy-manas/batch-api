@@ -91,22 +91,6 @@ app.post('/batches', (req, res) => {
     console.log(req.body);
 });
 
-app.delete('/batch/:id', (req, res) => {
-    // ---Data of individual Batch using ID---
-    const course = batchInfo.find(c => c.id === parseInt(req.params.id));
-
-    // ---Sending response for invalid Request---
-    if (!course) return res.status(404).send({status: 404, message: 'Not Found'});
-
-    // ---Deleting the Batch---
-    const index = batchInfo.indexOf(course);
-    batchInfo.splice(index, 1);
-    batches.splice(index, 1);
-
-    // ---Sending the response---
-    res.send(batches);
-});
-
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, console.log(`Listening to the PORT ${PORT}`));
